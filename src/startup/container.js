@@ -4,7 +4,7 @@ const { createContainer, asClass, asValue, asFunction } = require("awilix");
 const config = require("../config");
 const app = require(".");
 //services
-const { HomeService } = require("../services");
+const { HomeService, UserService } = require("../services");
 //controllers
 const { HomeController } = require("../controllers");
 //routes
@@ -26,6 +26,7 @@ container
   })
   .register({
     HomeService: asClass(HomeService).singleton(),
+    UserService: asClass(UserService).singleton(),
   })
   .register({
     //el metodo .bind mantiene el scope de la funcion
