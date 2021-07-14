@@ -1,18 +1,17 @@
-const BaseService= require('./base.service');
+const BaseService = require("./base.service");
 let _userRepository = null;
 
-class UserService extends BaseService{
-    constructor(repository){
-        super(repository)
-        _userRepository = repository;
-    }
+class UserService extends BaseService {
+  constructor(repository) {
+    super(repository);
+    _userRepository = repository;
+  }
 
-    async getUserByUsername(username){
+  async getUserByUsername(username) {
+    const currentEntity = await _userRepository.getUserByUsername(username);
 
-        const currentEntity = await _userRepository.getUserByUsername(username);
-
-        return currentEntity;
-    }
+    return currentEntity;
+  }
 }
 
 module.exports = UserService;

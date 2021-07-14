@@ -6,14 +6,14 @@ const app = require(".");
 //services
 const { HomeService, UserService } = require("../services");
 //controllers
-const { HomeController } = require("../controllers");
+const { HomeController, UserController } = require("../controllers");
 //routes
 const { HomeRoutes } = require("../routes/index.routes");
 const Routes = require("../routes/index");
 //models
-const {User} = require("../models")
+const { User } = require("../models");
 //repositories
-const {UserRepository} = require("../repositories")
+const { UserRepository } = require("../repositories");
 
 const container = createContainer();
 
@@ -31,9 +31,10 @@ container
   .register({
     //el metodo .bind mantiene el scope de la funcion
     HomeController: asClass(HomeController.bind(HomeController)).singleton(),
+    UserController: asClass(UserController.bind(UserController)).singleton(),
   })
   .register({ HomeRoutes: asFunction(HomeRoutes).singleton() })
-  .register({User: asValue(User)})
-  .register({UserRepository: asClass(UserRepository).singleton()});
+  .register({ User: asValue(User) })
+  .register({ UserRepository: asClass(UserRepository).singleton() });
 
 module.exports = container;
