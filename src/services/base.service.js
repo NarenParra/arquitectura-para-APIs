@@ -23,7 +23,7 @@ class BaseService {
     return currentEntity;
   }
 
-  async getAll(id) {
+  async getAll() {
     return await this.repository.getAll();
   }
 

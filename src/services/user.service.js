@@ -2,15 +2,13 @@ const BaseService = require("./base.service");
 let _userRepository = null;
 
 class UserService extends BaseService {
-  constructor(repository) {
-    super(repository);
-    _userRepository = repository;
+  constructor({ UserRepository }) {
+    super(UserRepository);
+    _userRepository = UserRepository;
   }
 
   async getUserByUsername(username) {
-    const currentEntity = await _userRepository.getUserByUsername(username);
-
-    return currentEntity;
+    return await _userRepository.getUserByUsername(username);
   }
 }
 

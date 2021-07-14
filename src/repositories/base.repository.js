@@ -8,7 +8,7 @@ class BaseRepository {
   }
 
   async getAll() {
-    return await this.model.find(id);
+    return await this.model.find();
   }
 
   async create(entity) {
