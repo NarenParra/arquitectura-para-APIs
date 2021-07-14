@@ -10,6 +10,10 @@ const { HomeController } = require("../controllers");
 //routes
 const { HomeRoutes } = require("../routes/index.routes");
 const Routes = require("../routes/index");
+//models
+const {User} = require("../models")
+//repositories
+const {UserRepository} = require("../repositories")
 
 const container = createContainer();
 
@@ -27,6 +31,8 @@ container
     //el metodo .bind mantiene el scope de la funcion
     HomeController: asClass(HomeController.bind(HomeController)).singleton(),
   })
-  .register({ HomeRoutes: asFunction(HomeRoutes).singleton() });
+  .register({ HomeRoutes: asFunction(HomeRoutes).singleton() })
+  .register({User: asValue(User)})
+  .register({UserRepository: asClass(UserRepository).singleton()});
 
 module.exports = container;
