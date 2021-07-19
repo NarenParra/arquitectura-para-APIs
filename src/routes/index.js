@@ -4,6 +4,9 @@ const helmet = require("helmet");
 const compression = require("compression");
 require("express-async-errors");
 const { NotFoundMiddleware, ErrorMiddleware } = require("../middlewares");
+const swaggerUI = require("swagger-ui-express");
+const { SWAGGER_PATH } = require("../config");
+const swaggerDocument = require(SWAGGER_PATH);
 
 module.exports = function ({ HomeRoutes, UserRoutes, AuthRoutes }) {
   const router = express.Router();
@@ -15,6 +18,9 @@ module.exports = function ({ HomeRoutes, UserRoutes, AuthRoutes }) {
   apiRoutes.use("/auth", AuthRoutes);
 
   router.use("/v1/api", apiRoutes);
+
+  //sagger
+  router.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
   router.use(NotFoundMiddleware);
   router.use(ErrorMiddleware);
